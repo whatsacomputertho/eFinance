@@ -62,6 +62,26 @@ public class user
      * Returns fName data field which is the user's first name
      * @return fName
      */
+    
+    /**
+     * This method will allow the user to select a data field to update and eventually will allow
+     * the user to update their selected piece of information. Once updated, it will return the result.
+     * @return 
+     */
+    private String updateUserInfo(){
+        String userInfo = "";
+        return userInfo;
+    }
+    /**
+     * This will allow the user to authenticate their information
+     * Once authentication is complete, method will return status of authentication
+     * @return 
+     */
+    private boolean authenticate(){
+        boolean status = false;
+        return status;
+    }
+    
     public String getfName() {
         return fName;
     }
