@@ -9,6 +9,7 @@ package com.efinance.model;
  *
  * @author Owner
  */
-public class user {
+public class User
+{
     
 }
