@@ -1,69 +1,123 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.efinance.model;
+
+import java.util.ArrayList;
+import java.util.Date;
 
 /**
  *
  * @author Joseph Haftl
  */
-public class paymentAccount {
-private int paymentAmount;
-private int accountID;
-private Loan loan;
-private String paymentDate; 
+public class paymentAccount 
+{
+    /**
+     * Payment accounts consist of two users, the borrower and the account manager.
+     * The borrower is already associated with the loan itself, so the only user that must be stored directly within the paymentAccount class is the account manager
+     */
+    private user accountManager;
+    
+    /**
+     * Payment accounts also consist of a loan which is used to calculate its current value based on its origination date and its initial value.
+     * These form the basis for the account balance, and then these are used to calculate interest over time.
+     */
+    private Loan loan;
+    
+    /**
+     * 
+     */
+    private ArrayList<Date> paymentDates;
+    
+    /**
+     * 
+     */
+    private ArrayList<Double> paymentAmounts;
 
-
-
-    public int getPaymentAmount() {
-        return paymentAmount;
-    }
-
-    public void setPaymentAmount(int paymentAmount) {
-        this.paymentAmount = paymentAmount;
-    }
-
-    public int getAccountID() {
-        return accountID;
-    }
-
-    public void setAccountID(int accountID) {
-        this.accountID = accountID;
-    }
-
-    public Loan getLoan() {
+    /**
+     * 
+     * @return 
+     */
+    public Loan getLoan()
+    {
         return loan;
     }
 
-    public void setLoan(Loan loan) {
+    /**
+     * 
+     * @param loan 
+     */
+    public void setLoan(Loan loan)
+    {
         this.loan = loan;
     }
 
-    public String getPaymentDate() {
-        return paymentDate;
+    /**
+     * 
+     * @return 
+     */
+    public user getAccountManager()
+    {
+        return accountManager;
     }
 
-    public void setPaymentDate(String paymentDate) {
-        this.paymentDate = paymentDate;
+    /**
+     * 
+     * @param accountManager 
+     */
+    public void setAccountManager(user accountManager)
+    {
+        this.accountManager = accountManager;
     }
 
-    
-public void makePayment(int paymentAmount){
+    /**
+     * 
+     * @return 
+     */
+    public ArrayList<Date> getPaymentDates()
+    {
+        return paymentDates;
+    }
 
-    
-}
-public void trackPayment(String paymentDate){
-    
-}
+    /**
+     * 
+     * @param paymentDates 
+     */
+    public void setPaymentDates(ArrayList<Date> paymentDates)
+    {
+        this.paymentDates = paymentDates;
+    }
 
+    /**
+     * 
+     * @return 
+     */
+    public ArrayList<Double> getPaymentAmounts()
+    {
+        return paymentAmounts;
+    }
 
+    /**
+     * 
+     * @param paymentAmounts 
+     */
+    public void setPaymentAmounts(ArrayList<Double> paymentAmounts)
+    {
+        this.paymentAmounts = paymentAmounts;
+    }
 
+    /**
+     * 
+     * @param paymentAmount 
+     */
+    public void makePayment(int paymentAmount)
+    {
 
-//two users 1 customer 1 account manager
-//would have a loan
-//account for the loan
-//use this account to make payments to the loan
-        
+    }
+
+    /**
+     * 
+     * @param paymentDate 
+     */
+    public void trackPayment(String paymentDate)
+    {
+
+    }
 }
