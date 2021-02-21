@@ -60,7 +60,7 @@ public class user
 
     /**
      * Returns fName data field which is the user's first name
-     * @return 
+     * @return fName
      */
     public String getfName() {
         return fName;
@@ -76,7 +76,7 @@ public class user
 
     /**
      * Returns the user's last name
-     * @return 
+     * @return lName
      */
     public String getlName() {
         return lName;
@@ -92,7 +92,7 @@ public class user
 
     /**
      * Returns the user's ID
-     * @return 
+     * @return userID
      */
     public String getUserID() {
         return userID;
@@ -108,7 +108,7 @@ public class user
 
     /**
      * Returns the user's password
-     * @return 
+     * @return userPass
      */
     public String getUserPass() {
         return userPass;
@@ -124,7 +124,7 @@ public class user
 
     /**
      * Returns the user's address
-     * @return 
+     * @return address
      */
     public String getAddress() {
         return address;
@@ -140,7 +140,7 @@ public class user
 
     /**
      * Return's the user's phone number
-     * @return 
+     * @return phoneNum
      */
     public String getPhoneNum() {
         return phoneNum;
