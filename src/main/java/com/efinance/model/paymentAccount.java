@@ -20,20 +20,21 @@ public class paymentAccount
      * These form the basis for the account balance, and then these are used to calculate interest over time.
      */
     private Loan loan;
-    
     /**
-     * 
+     * The date that the loan was payed on. This will be an array that shows all the dates that the user made payments on
+     * This will be used to allow the user and manger to track when payments were made
      */
     private ArrayList<Date> paymentDates;
     
     /**
-     * 
+     * The amount that the user pays each time they make a payment.
+     * This will allow the user and manger to track the amount they payed during each payment
      */
     private ArrayList<Double> paymentAmounts;
-
+  
     /**
-     * 
-     * @return 
+     * Returns the variable loan of type loan. This variable made in the loan Loan class includes CAR, STUDENT, MORTGAGE, PROJECT, RENOVATION
+     * @return loan
      */
     public Loan getLoan()
     {
@@ -41,8 +42,8 @@ public class paymentAccount
     }
 
     /**
-     * 
-     * @param loan 
+     * sets the variable loan of type loan. This variable made in the loan Loan class includes CAR, STUDENT, MORTGAGE, PROJECT, RENOVATION
+     * @param loan
      */
     public void setLoan(Loan loan)
     {
@@ -50,8 +51,8 @@ public class paymentAccount
     }
 
     /**
-     * 
-     * @return 
+     * returns the variable accountManager, which is of type user
+     * @return accountManager
      */
     public user getAccountManager()
     {
@@ -59,7 +60,7 @@ public class paymentAccount
     }
 
     /**
-     * 
+     * sets the variable accountManager, which is of type user
      * @param accountManager 
      */
     public void setAccountManager(user accountManager)
@@ -68,8 +69,8 @@ public class paymentAccount
     }
 
     /**
-     * 
-     * @return 
+     * returns the array of payment dates, showing each of the days the user made a payment
+     * @return paymentDates
      */
     public ArrayList<Date> getPaymentDates()
     {
@@ -77,7 +78,7 @@ public class paymentAccount
     }
 
     /**
-     * 
+     * sets the array of payment dates.
      * @param paymentDates 
      */
     public void setPaymentDates(ArrayList<Date> paymentDates)
@@ -86,8 +87,8 @@ public class paymentAccount
     }
 
     /**
-     * 
-     * @return 
+     * returns the amount of money that the user paid.
+     * @return paymentAmounts
      */
     public ArrayList<Double> getPaymentAmounts()
     {
@@ -95,7 +96,7 @@ public class paymentAccount
     }
 
     /**
-     * 
+     * sets the amount of money that the user paid.
      * @param paymentAmounts 
      */
     public void setPaymentAmounts(ArrayList<Double> paymentAmounts)
@@ -104,7 +105,7 @@ public class paymentAccount
     }
 
     /**
-     * 
+     * Allows the user to pay a certain amount of money, in order to pay off their loan
      * @param paymentAmount 
      */
     public void makePayment(int paymentAmount)
@@ -113,10 +114,10 @@ public class paymentAccount
     }
 
     /**
-     * 
+     * Allows the user and manager to see all past payments, This displays all the dates these payments were made on and the amount that was paid.
      * @param paymentDate 
      */
-    public void trackPayment(String paymentDate)
+    public void trackPayment(ArrayList paymentDates, ArrayList paymentAmounts)
     {
 
     }
