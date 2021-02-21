@@ -9,7 +9,7 @@ package com.efinance.model;
  *
  * @author Owner
  */
-public class User
+public class user
 {
     
     private String fName;

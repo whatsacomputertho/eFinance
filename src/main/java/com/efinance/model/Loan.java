@@ -7,7 +7,7 @@ public class Loan
     /**
      * The borrower data field tracks the user who takes out the loan
      */
-    private User borrower;
+    private user borrower;
     
     /**
      * The loan type signifies which type of loan the borrower has taken out
@@ -43,7 +43,7 @@ public class Loan
      * @param amountUSD
      * @param interestRate 
      */
-    public Loan(User borrower, LoanType type, Date loanApprovalDate, double amountUSD, double interestRate)
+    public Loan(user borrower, LoanType type, Date loanApprovalDate, double amountUSD, double interestRate)
     {
         this.borrower = borrower;
         this.type = type;
@@ -56,7 +56,7 @@ public class Loan
      * Returns the borrower data field which tracks the user who takes out the loan
      * @return borrower
      */
-    public User getBorrower()
+    public user getBorrower()
     {
         return borrower;
     }
@@ -65,7 +65,7 @@ public class Loan
      * Sets the borrower data field which tracks the user who takes out the loan
      * @param borrower 
      */
-    public void setBorrower(User borrower)
+    public void setBorrower(user borrower)
     {
         this.borrower = borrower;
     }
