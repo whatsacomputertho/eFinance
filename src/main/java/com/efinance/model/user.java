@@ -81,7 +81,10 @@ public class user
         boolean status = false;
         return status;
     }
-    
+    /**
+     * Returns the user's first name
+     * @return fName
+     */
     public String getfName() {
         return fName;
     }
@@ -159,7 +162,7 @@ public class user
     }
 
     /**
-     * Return's the user's phone number
+     * Returns the user's phone number
      * @return phoneNum
      */
     public String getPhoneNum() {
