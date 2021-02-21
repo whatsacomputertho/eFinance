@@ -1,5 +1,6 @@
 package com.efinance.model;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 public class Loan
@@ -142,7 +143,34 @@ public class Loan
         this.interestRate = interestRate;
     }
     
-    /*
-    TODO: Insert Methods Here
-    */
+    /**
+     * Calculates the interest accrued since last payment date based on the current date, last payment date, and current balance.
+     * Also involves the use of the interestRate instance variable.
+     * Conditionally involves the use of amountUSD and approvalDate instance variables.
+     * @param lastPaymentDate
+     * @param currentBalance
+     * @return interest
+     */
+    public double calculateInterest(Date lastPaymentDate, double currentBalance)
+    {
+        double interest = 0.0f;
+        /*
+        TODO: Implement
+        */
+        return interest;
+    }
+    
+    /**
+     * Generates a formatted list containing the loan's information for front-end display.
+     * Involves all instance variables.
+     * @return loanInformation
+     */
+    public ArrayList<String> generateLoanInformation()
+    {
+        ArrayList<String> loanInformation = new ArrayList();
+        /*
+        TODO: Implement
+        */
+        return loanInformation;
+    }
 }
