@@ -57,11 +57,6 @@ public class user
         this.address = address;
         this.phoneNum = phoneNum;
     }
-
-    /**
-     * Returns fName data field which is the user's first name
-     * @return fName
-     */
     
     /**
      * This method will allow the user to select a data field to update and eventually will allow
