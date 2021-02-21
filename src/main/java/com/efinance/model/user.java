@@ -42,12 +42,12 @@ public class user
 
     /**
      * All parameter constructor
-     * @param fName
-     * @param lName
-     * @param userID
-     * @param userPass
-     * @param address
-     * @param phoneNum 
+     * @param fName First name of the user
+     * @param lName Last name of the user
+     * @param userID ID belonging to the user's account
+     * @param userPass Password of the user
+     * @param address Address of the user
+     * @param phoneNum Phone number of the user
      */
     public user(String fName, String lName, String userID, String userPass, String address, String phoneNum) {
         this.fName = fName;
@@ -86,7 +86,7 @@ public class user
 
     /**
      * Set's the user's first name
-     * @param fName 
+     * @param fName Users first name
      */
     public void setfName(String fName) {
         this.fName = fName;
@@ -102,7 +102,7 @@ public class user
 
     /**
      * Sets the user's last name
-     * @param lName 
+     * @param lName Users last name
      */
     public void setlName(String lName) {
         this.lName = lName;
@@ -118,7 +118,7 @@ public class user
 
     /**
      * Sets the user's ID
-     * @param userID 
+     * @param userID ID assigned to the users account
      */
     public void setUserID(String userID) {
         this.userID = userID;
@@ -134,7 +134,7 @@ public class user
 
     /**
      * Sets the user's password
-     * @param userPass 
+     * @param userPass Password the user chose
      */
     public void setUserPass(String userPass) {
         this.userPass = userPass;
@@ -150,7 +150,7 @@ public class user
 
     /**
      * Set's the user's address
-     * @param address 
+     * @param address Address of the user
      */
     public void setAddress(String address) {
         this.address = address;
@@ -166,7 +166,7 @@ public class user
 
     /**
      * Sets the user's phone number
-     * @param phoneNum 
+     * @param phoneNum Phone number of the user
      */
     public void setPhoneNum(String phoneNum) {
         this.phoneNum = phoneNum;

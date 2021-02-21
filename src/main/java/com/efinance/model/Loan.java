@@ -38,11 +38,11 @@ public class Loan
 
     /**
      * All parameter constructor
-     * @param borrower
-     * @param type
-     * @param loanApprovalDate
-     * @param amountUSD
-     * @param interestRate 
+     * @param borrower Tracks the user who takes out the loan
+     * @param type Type of loan that the user has taken out
+     * @param loanApprovalDate Date that the loan was approved on
+     * @param amountUSD Amount of money the loan contain
+     * @param interestRate The interest rate of the loan
      */
     public Loan(user borrower, LoanType type, Date loanApprovalDate, double amountUSD, double interestRate)
     {
@@ -64,7 +64,7 @@ public class Loan
 
     /**
      * Sets the borrower data field which tracks the user who takes out the loan
-     * @param borrower 
+     * @param borrower User who takes out the loan
      */
     public void setBorrower(user borrower)
     {
@@ -82,7 +82,7 @@ public class Loan
 
     /**
      * Sets the loan type which signifies which type of loan the borrower has taken out
-     * @param type 
+     * @param type Loan type that was taken out
      */
     public void setType(LoanType type)
     {
@@ -100,7 +100,7 @@ public class Loan
 
     /**
      * Sets the loan approval date which signifies the date the loan was approved.  It is also referred to as its origination date
-     * @param loanApprovalDate 
+     * @param loanApprovalDate Date the loan was approved on
      */
     public void setLoanApprovalDate(Date loanApprovalDate)
     {
@@ -118,7 +118,7 @@ public class Loan
 
     /**
      * Sets the amount data field which signifies how much money the loan is worth in US Dollars (USD)
-     * @param amountUSD 
+     * @param amountUSD Amount of money the loan contains
      */
     public void setAmountUSD(double amountUSD)
     {
@@ -136,7 +136,7 @@ public class Loan
 
     /**
      * Sets the interest rate data field which signifies the rate at which interest is accrued with regard to time
-     * @param interestRate
+     * @param interestRate The interest rate of the loan
      */
     public void setInterestRate(double interestRate)
     {
@@ -147,8 +147,8 @@ public class Loan
      * Calculates the interest accrued since last payment date based on the current date, last payment date, and current balance.
      * Also involves the use of the interestRate instance variable.
      * Conditionally involves the use of amountUSD and approvalDate instance variables.
-     * @param lastPaymentDate
-     * @param currentBalance
+     * @param lastPaymentDate Last time the user made a payment 
+     * @param currentBalance The current balance left in the loan needed to calculate the interestRate variable
      * @return interest
      */
     public double calculateInterest(Date lastPaymentDate, double currentBalance)
