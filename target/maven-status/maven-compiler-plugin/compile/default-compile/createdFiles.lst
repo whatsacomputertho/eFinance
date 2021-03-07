@@ -1,2 +1,9 @@
 com\efinance\EFinanceApplication.class
-com\efinance\controller\HelloController.class
+com\efinance\model\User.class
+com\efinance\model\Loan.class
+com\efinance\service\UserService.class
+com\efinance\model\Loan$LoanType.class
+com\efinance\controller\UserController.class
+com\efinance\model\User$UserType.class
+com\efinance\repository\UserRepository.class
+com\efinance\model\PaymentAccount.class

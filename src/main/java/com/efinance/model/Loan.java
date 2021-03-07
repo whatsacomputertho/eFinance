@@ -6,9 +6,9 @@ import java.util.Date;
 public class Loan
 {
     /**
-     * The borrower data field tracks the user who takes out the loan
+     * The borrower data field tracks the User who takes out the loan
      */
-    private user borrower;
+    private User borrower;
     
     /**
      * The loan type signifies which type of loan the borrower has taken out
@@ -38,13 +38,13 @@ public class Loan
 
     /**
      * All parameter constructor
-     * @param borrower Tracks the user who takes out the loan
-     * @param type Type of loan that the user has taken out
+     * @param borrower Tracks the User who takes out the loan
+     * @param type Type of loan that the User has taken out
      * @param loanApprovalDate Date that the loan was approved on
      * @param amountUSD Amount of money the loan contain
      * @param interestRate The interest rate of the loan
      */
-    public Loan(user borrower, LoanType type, Date loanApprovalDate, double amountUSD, double interestRate)
+    public Loan(User borrower, LoanType type, Date loanApprovalDate, double amountUSD, double interestRate)
     {
         this.borrower = borrower;
         this.type = type;
@@ -54,19 +54,19 @@ public class Loan
     }
     
     /**
-     * Returns the borrower data field which tracks the user who takes out the loan
+     * Returns the borrower data field which tracks the User who takes out the loan
      * @return borrower
      */
-    public user getBorrower()
+    public User getBorrower()
     {
         return borrower;
     }
 
     /**
-     * Sets the borrower data field which tracks the user who takes out the loan
+     * Sets the borrower data field which tracks the User who takes out the loan
      * @param borrower User who takes out the loan
      */
-    public void setBorrower(user borrower)
+    public void setBorrower(User borrower)
     {
         this.borrower = borrower;
     }
@@ -147,7 +147,7 @@ public class Loan
      * Calculates the interest accrued since last payment date based on the current date, last payment date, and current balance.
      * Also involves the use of the interestRate instance variable.
      * Conditionally involves the use of amountUSD and approvalDate instance variables.
-     * @param lastPaymentDate Last time the user made a payment 
+     * @param lastPaymentDate Last time the User made a payment 
      * @param currentBalance The current balance left in the loan needed to calculate the interestRate variable
      * @return interest
      */
