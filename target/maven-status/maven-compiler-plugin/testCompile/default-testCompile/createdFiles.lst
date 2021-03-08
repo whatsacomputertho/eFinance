@@ -1,2 +1,4 @@
+com\efinance\controller\UserControllerTest.class
+com\efinance\service\UserServiceTest.class
 com\efinance\repository\UserRepositoryTest.class
 com\efinance\EfinanceApplicationTests.class
