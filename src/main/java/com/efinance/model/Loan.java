@@ -2,32 +2,59 @@ package com.efinance.model;
 
 import java.util.ArrayList;
 import java.util.Date;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
+@Entity
+@Table(name="loan")
 public class Loan
 {
+    @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @Column(name="loanid", nullable=false)
+    private int loanId;
+    
     /**
      * The borrower data field tracks the User who takes out the loan
      */
+    @ManyToOne
+    @JoinColumn(name="userid", nullable=false)
     private User borrower;
     
     /**
      * The loan type signifies which type of loan the borrower has taken out
      */
-    private LoanType type;
+    @Column(name="loantype", nullable=false)
+    @Enumerated(EnumType.STRING)
+    private LoanType loanType;
     
     /**
      * The loan approval date signifies the date the loan was approved.  This is also referred to as its origination date
      */
+    @Column(name="loanapprovaldate")
+    @Temporal(TemporalType.DATE)
     private Date loanApprovalDate;
     
     /**
      * The amount data field signifies how much money the loan is worth in US Dollars (USD)
      */
+    @Column(name="amountusd", nullable=false)
     private double amountUSD;
     
     /**
      * The interest rate data field signifies the rate at which interest is accrued with regard to time
      */
+    @Column(name="interestrate", nullable=false)
     private double interestRate;
     
     /**
@@ -36,6 +63,14 @@ public class Loan
      */
     public enum LoanType{CAR, STUDENT, MORTGAGE, PROJECT, RENOVATION};
 
+    /**
+     * No Parameter Constructor
+     */
+    public Loan()
+    {
+        //Just instantiate
+    }
+    
     /**
      * All parameter constructor
      * @param borrower Tracks the User who takes out the loan
@@ -47,7 +82,7 @@ public class Loan
     public Loan(User borrower, LoanType type, Date loanApprovalDate, double amountUSD, double interestRate)
     {
         this.borrower = borrower;
-        this.type = type;
+        this.loanType = type;
         this.loanApprovalDate = loanApprovalDate;
         this.amountUSD = amountUSD;
         this.interestRate = interestRate;
@@ -75,18 +110,18 @@ public class Loan
      * Returns the loan type which signifies which type of loan the borrower has taken out
      * @return type
      */
-    public LoanType getType()
+    public LoanType getLoanType()
     {
-        return type;
+        return loanType;
     }
 
     /**
      * Sets the loan type which signifies which type of loan the borrower has taken out
-     * @param type Loan type that was taken out
+     * @param loanType Loan type that was taken out
      */
-    public void setType(LoanType type)
+    public void setLoanType(LoanType loanType)
     {
-        this.type = type;
+        this.loanType = loanType;
     }
 
     /**
@@ -141,36 +176,5 @@ public class Loan
     public void setInterestRate(double interestRate)
     {
         this.interestRate = interestRate;
-    }
-    
-    /**
-     * Calculates the interest accrued since last payment date based on the current date, last payment date, and current balance.
-     * Also involves the use of the interestRate instance variable.
-     * Conditionally involves the use of amountUSD and approvalDate instance variables.
-     * @param lastPaymentDate Last time the User made a payment 
-     * @param currentBalance The current balance left in the loan needed to calculate the interestRate variable
-     * @return interest
-     */
-    public double calculateInterest(Date lastPaymentDate, double currentBalance)
-    {
-        double interest = 0.0f;
-        /*
-        TODO: Implement
-        */
-        return interest;
-    }
-    
-    /**
-     * Generates a formatted list containing the loan's information for front-end display.
-     * Involves all instance variables.
-     * @return loanInformation
-     */
-    public ArrayList<String> generateLoanInformation()
-    {
-        ArrayList<String> loanInformation = new ArrayList();
-        /*
-        TODO: Implement
-        */
-        return loanInformation;
     }
 }

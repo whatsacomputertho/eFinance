@@ -57,6 +57,9 @@ public class User
     @Column(name="usertype")
     @Enumerated(EnumType.STRING)
     private UserType usertype;
+    
+    @Column(name="enabled")
+    private boolean enabled;
 
     /**
      * No Parameter Constructor
@@ -169,5 +172,15 @@ public class User
     public void setUserType(UserType usertype)
     {
         this.usertype = usertype;
+    }
+
+    public boolean isEnabled()
+    {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled)
+    {
+        this.enabled = enabled;
     }
 }

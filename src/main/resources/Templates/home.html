@@ -4,16 +4,19 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.springframework.org/extras/spring-security">
     <head>
         <title>Home</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-        <div>
+        <div sec:authorize="isAuthenticated()">
             <h1>Welcome, </h1>
-            <h2 th:object="${user}" th:text="${user.fname}"></h2>
+            <h2 sec:authentication="name">[[${#request.remoteUser}]][[${#request.userPrincipal.principal.authorities}]]</h2>
         </div>
+        <a href="review-loan">review loan</a>
+        <a href="apply">apply</a>
     </body>
 </html>
