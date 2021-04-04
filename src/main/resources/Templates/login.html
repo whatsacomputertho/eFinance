@@ -28,7 +28,9 @@ and open the template in the editor.
                     </tr>
                 </table>
             </form>
-            <p th:object="${feedback}" th:text="${feedback}"></p>
+            <p th:if="${param.error}">
+                Invalid username or password
+            </p>
         </div>
     </body>
 </html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Apply</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <h1>Apply for loan</h1>
+        <form action="#" th:action="@{/submit-application}" th:object="${loan}" method="post">
+                <table>
+                    <tr>
+                        <td>Loan Type:</td>
+                        <td><select th:field="*{loanType}">
+                            <option th:each="type : ${T(com.efinance.model.Loan.LoanType).values()}"
+                                    th:value="${type}"
+                                    th:text="${type}">
+                            </option>
+                        </select></td>
+                    </tr>
+                    <tr>
+                        <td>Loan Amount (USD):</td>
+                        <td><input type="number" min="0.01" step="any" th:field="*{amountUSD}"/></td>
+                    </tr>
+                    <tr>
+                        <td>Interest Rate:</td>
+                        <td><input type="number" min="0.01" max="99.99" step="any" th:field="*{interestRate}"/></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><button type="submit">Apply</button></td>
+                    </tr>
+                </table>
+            </form>
+            <p th:object="${feedback}" th:text="${feedback}"></p>
+    </body>
+</html>
