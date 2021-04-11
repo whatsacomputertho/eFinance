@@ -13,6 +13,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 
 @Configuration
 @EnableWebSecurity
@@ -43,7 +44,6 @@ public class UserSecurityConfiguration extends WebSecurityConfigurerAdapter
     
     @Override
     public void configure(WebSecurity web) throws Exception {
-        web.ignoring().antMatchers("/resources/**");
     }
 
     @Override
@@ -54,7 +54,8 @@ public class UserSecurityConfiguration extends WebSecurityConfigurerAdapter
             .antMatchers("/validate").permitAll()
             .antMatchers("/verify").permitAll()
             .antMatchers("/resources/**").permitAll()
-            .antMatchers("/*.js").permitAll()
+            .antMatchers("/resources/static/style.css").permitAll()
+            .and().authorizeRequests()
             .antMatchers("/review-loan").hasAuthority("LOANOFFICER")
             .anyRequest().authenticated()
             .and().formLogin().loginPage("/login").loginProcessingUrl("/validate").usernameParameter("email").passwordParameter("userpass").defaultSuccessUrl("/home")
