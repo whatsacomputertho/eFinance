@@ -10,32 +10,117 @@ and open the template in the editor.
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
-    <body>
-        <h1>Apply for loan</h1>
-        <form action="#" th:action="@{/submit-application}" th:object="${loan}" method="post">
-                <table>
-                    <tr>
-                        <td>Loan Type:</td>
-                        <td><select th:field="*{loanType}">
-                            <option th:each="type : ${T(com.efinance.model.Loan.LoanType).values()}"
-                                    th:value="${type}"
-                                    th:text="${type}">
-                            </option>
-                        </select></td>
-                    </tr>
-                    <tr>
-                        <td>Loan Amount (USD):</td>
-                        <td><input type="number" min="0.01" step="any" th:field="*{amountUSD}"/></td>
-                    </tr>
-                    <tr>
-                        <td>Interest Rate:</td>
-                        <td><input type="number" min="0.01" max="99.99" step="any" th:field="*{interestRate}"/></td>
-                    </tr>
-                    <tr>
-                        <td colspan="2"><button type="submit">Apply</button></td>
-                    </tr>
-                </table>
-            </form>
-            <p th:object="${feedback}" th:text="${feedback}"></p>
+    <body style="margin: auto;">
+        <script>window.__appCDN="https://cdn.webcomponents.psu.edu/cdn/";</script>
+        <script src="https://cdn.webcomponents.psu.edu/cdn/build.js"></script>
+        <div style="height: 8vh; display: grid; grid-template-columns: 20% 20% 20% 20% 20%; background-color: black;">
+            <img src="https://photo.isu.pub/atz.sa/photo_large.jpg" height="100%"/>
+            <button id="applybutton-nav" onclick="window.location.href='/apply'" style="color: white; padding: 16px; background-color: black; border-color: white; border-radius: 8px; transition-duration: 0.4s;">Apply</button>
+            <button id="loansbutton-nav" onclick="window.location.href='/review-loan'" style="color: white; padding: 16px; background-color: black; border-color: white; border-radius: 8px; transition-duration: 0.4s; margin-left: 5%;">Loans</button>
+            <button id="accountsbutton-nav" onclick="window.location.href='/register'" style="color: white; padding: 16px; background-color: black; border-color: white; border-radius: 8px; transition-duration: 0.4s; margin-left: 5%;">Accounts</button>
+            <button id="settingsbutton-nav" onclick="window.location.href='/settings'" style="color: white; padding: 16px; background-color: black; border-color: white; border-radius: 8px; transition-duration: 0.4s; margin-left: 5%;">Settings</button>
+        </div>
+        <div style="background-image: url('https://live.staticflickr.com/5293/5537894072_c4e46bfce1_b.jpg'); background-size: cover; background-repeat: no-repeat; width: 100vw; height: 100vh;">
+            <div style="height: 10vh"></div>
+            <div style="margin: auto; width: 70vw; height: 70vh; padding-top: 5vh; padding-left: 4vw; padding-right: 4vw; background-color: rgba(0, 0, 0, 0.9);">
+                <h1 style="color: white;">Apply for loan</h1>
+                <form action="#" th:action="@{/submit-application}" th:object="${loan}" method="post">
+                    <div style="margin-top: 3vh;">
+                        <h5 style="color: white;">Loan Type:</h5>
+                        <div><select id="loantypefield" th:field="*{loanType}"><option th:each="type : ${T(com.efinance.model.Loan.LoanType).values()}" th:value="${type}" th:text="${type}"></option></select><simple-fields-field id="loanType" type="select" style="--simple-fields-color: white;"></simple-fields-field></div>
+                    </div>
+                    <div style="margin-top: 3vh;">
+                        <h5 style="color: white;">Loan Amount (USD):</h5>
+                        <div><input id="amountusdfield" type="hidden" min="0.01" step="any" th:field="*{amountUSD}"/><simple-fields-field id="amountusd" type="number" min="0.01" step="0.01" style="--simple-fields-color: white;"></simple-fields-field></div>
+                    </div>
+                    <div style="margin-top: 3vh;">
+                        <h5 style="color: white;">Interest Rate:</h5>
+                        <div><input id="interestratefield" type="hidden" min="0.01" max="99.99" step="any" th:field="*{interestRate}"/></td><simple-fields-field id="interestrate" type="number" min="0.01" max="99.99" step="0.01" style="--simple-fields-color: white;"></simple-fields-field></div>
+                    </div>
+                    <div style="margin-top: 3vh;">
+                        <button id="applybutton" type="submit" style="color: white; padding: 16px; background-color: black; border-color: white; border-radius: 8px; transition-duration: 0.4s;">Apply</button>
+                    </div>
+                </form>
+                <p style="color: white;" th:object="${feedback}" th:text="${feedback}"></p>
+            </div>
+        </div>
+        <script>
+            document.getElementById("loantypefield").style.display = "none";
+            document.getElementById("loanType").itemsList=[
+                {value: "CAR", "text": "Car"},
+                {value: "STUDENT", "text": "Student"},
+                {value: "MORTGAGE", "text": "Mortgage"},
+                {value: "PROJECT", "text": "Project"},
+                {value: "RENOVATION", "text": "Renovation"}
+            ];
+            document.getElementById("loanType").addEventListener("value-changed", function(e) {
+                if(e.detail.value == "CAR")
+                {
+                    document.getElementById("loantypefield").value = document.getElementById("loantypefield").options[0].value;
+                }
+                else if(e.detail.value == "STUDENT")
+                {
+                    document.getElementById("loantypefield").value = document.getElementById("loantypefield").options[1].value;
+                }
+                else if(e.detail.value == "MORTGAGE")
+                {
+                    document.getElementById("loantypefield").value = document.getElementById("loantypefield").options[2].value;
+                }
+                else if(e.detail.value == "PROJECT")
+                {
+                    document.getElementById("loantypefield").value = document.getElementById("loantypefield").options[3].value;
+                }
+                else if(e.detail.value == "RENOVATION")
+                {
+                    document.getElementById("loantypefield").value = document.getElementById("loantypefield").options[4].value;
+                }
+            });
+            document.getElementById("amountusd").addEventListener("value-changed", function(e) {
+                document.getElementById("amountusdfield").value = e.detail.value;
+            });
+            document.getElementById("interestrate").addEventListener("value-changed", function(e) {
+                document.getElementById("interestratefield").value = e.detail.value;
+            });
+            document.getElementById("applybutton-nav").addEventListener("mouseover", function() {
+                document.getElementById("applybutton-nav").style.backgroundColor = "white";
+                document.getElementById("applybutton-nav").style.color = "black";
+            });
+            document.getElementById("applybutton-nav").addEventListener("mouseout", function() {
+                document.getElementById("applybutton-nav").style.backgroundColor = "black";
+                document.getElementById("applybutton-nav").style.color = "white";
+            });
+            document.getElementById("loansbutton-nav").addEventListener("mouseover", function() {
+                document.getElementById("loansbutton-nav").style.backgroundColor = "white";
+                document.getElementById("loansbutton-nav").style.color = "black";
+            });
+            document.getElementById("loansbutton-nav").addEventListener("mouseout", function() {
+                document.getElementById("loansbutton-nav").style.backgroundColor = "black";
+                document.getElementById("loansbutton-nav").style.color = "white";
+            });
+            document.getElementById("accountsbutton-nav").addEventListener("mouseover", function() {
+                document.getElementById("accountsbutton-nav").style.backgroundColor = "white";
+                document.getElementById("accountsbutton-nav").style.color = "black";
+            });
+            document.getElementById("accountsbutton-nav").addEventListener("mouseout", function() {
+                document.getElementById("accountsbutton-nav").style.backgroundColor = "black";
+                document.getElementById("accountsbutton-nav").style.color = "white";
+            });
+            document.getElementById("settingsbutton-nav").addEventListener("mouseover", function() {
+                document.getElementById("settingsbutton-nav").style.backgroundColor = "white";
+                document.getElementById("settingsbutton-nav").style.color = "black";
+            });
+            document.getElementById("settingsbutton-nav").addEventListener("mouseout", function() {
+                document.getElementById("settingsbutton-nav").style.backgroundColor = "black";
+                document.getElementById("settingsbutton-nav").style.color = "white";
+            });
+            document.getElementById("applybutton").addEventListener("mouseover", function() {
+                document.getElementById("applybutton").style.backgroundColor = "white";
+                document.getElementById("applybutton").style.color = "black";
+            });
+            document.getElementById("applybutton").addEventListener("mouseout", function() {
+                document.getElementById("applybutton").style.backgroundColor = "black";
+                document.getElementById("applybutton").style.color = "white";
+            });
+        </script>
     </body>
 </html>

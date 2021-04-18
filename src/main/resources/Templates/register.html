@@ -10,33 +10,61 @@ and open the template in the editor.
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
-    <body>
-        <div>
-            <h1>Register</h1>
-            <form action="#" th:action="@{/verify}" th:object="${user}" method="post">
-                <table>
-                    <tr>
-                        <td>First Name:</td>
-                        <td><input type="text" th:field="*{fname}"/></td>
-                    </tr>
-                    <tr>
-                        <td>Last Name:</td>
-                        <td><input type="text" th:field="*{lname}"/></td>
-                    </tr>
-                    <tr>
-                        <td>Email:</td>
-                        <td><input type="text" th:field="*{email}"/></td>
-                    </tr>
-                    <tr>
-                        <td>Password:</td>
-                        <td><input type="text" th:field="*{userpass}"/></td>
-                    </tr>
-                    <tr>
-                        <td colspan="2"><button type="submit">Register</button></td>
-                    </tr>
-                </table>
-            </form>
-            <p th:object="${feedback}" th:text="${feedback}"></p>
+    <body style="margin: auto;">
+        <script>window.__appCDN="https://cdn.webcomponents.psu.edu/cdn/";</script>
+        <script src="https://cdn.webcomponents.psu.edu/cdn/build.js"></script>
+        <div style="background-image: url('https://live.staticflickr.com/5293/5537894072_c4e46bfce1_b.jpg'); background-size: cover; background-repeat: no-repeat; width: 100vw; height: 100vh;">
+            <div style="height: 10vh"></div>
+            <div style="margin: auto; width: 70vw; height: 80vh; padding-top: 5vh; padding-left: 4vw; padding-right: 4vw; background-color: rgba(0, 0, 0, 0.9);">
+                <h1 style="color: white;">Register</h1>
+                <form action="#" th:action="@{/verify}" th:object="${user}" method="post">
+                    <div style="margin-top: 3vh;">
+                        <h5 style="color: white;">First Name:</h5>
+                        <div><input id="fnamefield" type="hidden" th:field="*{fname}"/><simple-fields-field id="fname" type="text" style="--simple-fields-color: white;"></simple-fields-field></div>
+                    </div>
+                    <div style="margin-top: 3vh;">
+                        <h5 style="color: white;">Last Name:</h5>
+                        <div><input id="lnamefield" type="hidden" th:field="*{lname}"/><simple-fields-field id="lname" type="text" style="--simple-fields-color: white;"></simple-fields-field></div>
+                    </div>
+                    <div style="margin-top: 3vh;">
+                        <h5 style="color: white;">Email:</h5>
+                        <div><input id="emailfield" type="hidden" th:field="*{email}"/><simple-fields-field id="email" type="text" style="--simple-fields-color: white;"></simple-fields-field></div>
+                    </div>
+                    <div style="margin-top: 3vh;">
+                        <h5 style="color: white;">Password:</h5>
+                        <div><input id="passfield" type="hidden" th:field="*{userpass}"/><simple-fields-field id="pass" type="text" style="--simple-fields-color: white;"></simple-fields-field></div>
+                    </div>
+                    <div style="margin-top: 3vh">
+                        <button id="submitbutton" type="submit" style="color: white; padding: 16px; background-color: black; border-color: white; border-radius: 8px; transition-duration: 0.4s">Register</button></td>
+                    </div>
+                    <div style="margin-top: 2vh;">
+                        <h5 style="color: white;">Have an account already? <a href="login">Login here</a>.</h5>
+                    </div>
+                </form>
+                <p style="color: white;" th:object="${feedback}" th:text="${feedback}"></p>
+            </div>
         </div>
+        <script>
+            document.getElementById("email").addEventListener("value-changed", function(e) {
+                document.getElementById("emailfield").value = e.detail.value;
+            });
+            document.getElementById("pass").addEventListener("value-changed", function(e) {
+                document.getElementById("passfield").value = e.detail.value;
+            });
+            document.getElementById("fname").addEventListener("value-changed", function(e) {
+                document.getElementById("fnamefield").value = e.detail.value;
+            });
+            document.getElementById("lname").addEventListener("value-changed", function(e) {
+                document.getElementById("lnamefield").value = e.detail.value;
+            });
+            document.getElementById("submitbutton").addEventListener("mouseover", function() {
+                document.getElementById("submitbutton").style.backgroundColor = "white";
+                document.getElementById("submitbutton").style.color = "black";
+            });
+            document.getElementById("submitbutton").addEventListener("mouseout", function() {
+                document.getElementById("submitbutton").style.backgroundColor = "black";
+                document.getElementById("submitbutton").style.color = "white";
+            });
+        </script>
     </body>
 </html>
