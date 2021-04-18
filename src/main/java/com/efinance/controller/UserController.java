@@ -83,4 +83,10 @@ public class UserController
     {
         return "home";
     }
+    
+    @RequestMapping("/logout")
+    public String logout()
+    {
+        return "/";
+    }
 }

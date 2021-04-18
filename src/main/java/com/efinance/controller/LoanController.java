@@ -41,7 +41,7 @@ public class LoanController
     @RequestMapping("/submit-application")
     public String submitApplication(@ModelAttribute("loan") Loan loan, Model model)
     {
-        if(loan.getLoanType() != null)
+        if((loan.getLoanType() != null) && (loan.getInterestRate() > 0) && (loan.getInterestRate() < 100) && (loan.getAmountUSD() > 0))
         {
             Authentication loggedInUser = SecurityContextHolder.getContext().getAuthentication();
             String email = ((UserDetails)loggedInUser.getPrincipal()).getUsername();
@@ -51,7 +51,7 @@ public class LoanController
         }
         else
         {
-            model.addAttribute("Information missing, please fill out all fields");
+            model.addAttribute("feedback", "Information missing or incorrect.  Please revise loan application.");
             return "apply";
         }
     }

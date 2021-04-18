@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Welcome</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body style="margin: auto;">
+        <script>window.__appCDN="https://cdn.webcomponents.psu.edu/cdn/";</script>
+        <script src="https://cdn.webcomponents.psu.edu/cdn/build.js"></script>
+        <script type="module">
+            import {LrnButton} from '@lrnwebcomponents/lrn-button';
+        </script>
+        <div style="height: 8vh; display: grid; grid-template-columns: 20% 60% 10% 10%; background-color: black;">
+            <img src="https://photo.isu.pub/atz.sa/photo_large.jpg" height="100%"/>
+            <div></div>
+            <button id="loginbutton-nav" onclick="window.location.href='/login'" style="color: white; padding: 16px; background-color: black; border-color: white; border-radius: 8px; transition-duration: 0.4s; margin-right: 5%;">Login</button>
+            <button id="registerbutton-nav" onclick="window.location.href='/register'" style="color: white; padding: 16px; background-color: black; border-color: white; border-radius: 8px; transition-duration: 0.4s; margin-left: 5%;">Register</button>
+        </div>
+        <div style="background-image: url('https://live.staticflickr.com/5293/5537894072_c4e46bfce1_b.jpg'); background-size: cover; background-repeat: no-repeat; width: 100vw; height: 92vh;">
+            <div style="height: 10vh;"></div>
+            <div style="margin: auto; width: 70vw; height: 80%; display: grid; grid-template-columns: 50% 50%; background-color: rgba(0, 0, 0, 0.9);">
+                <div style="padding-top: 37%; padding-right: 20%; padding-left: 20%;">
+                    <h1 style="color: white; margin: 0px; padding: 0px;">Welcome to eFinance</h1>
+                    <p style="color: white; margin: 0px; padding: 0px;">Making the future possible</p>
+                </div>
+                <div style="display: grid; grid-template-columns: 50% 50%; padding-top: 40%; padding-bottom: 55%; padding-right: 20%; padding-left: 20%;">
+                    <button id="loginbutton-main" onclick="window.location.href='/login'" style="color: white; padding: 16px; background-color: black; border-color: white; border-radius: 8px; transition-duration: 0.4s; margin-right: 5%;">Login</button>
+                    <button id="registerbutton-main" onclick="window.location.href='/register'" style="color: white; padding: 16px; background-color: black; border-color: white; border-radius: 8px; transition-duration: 0.4s; margin-left: 5%;">Register</button>
+                </div>
+            </div>
+        </div>
+        <script>
+            document.getElementById("loginbutton-main").addEventListener("mouseover", function() {
+                document.getElementById("loginbutton-main").style.backgroundColor = "white";
+                document.getElementById("loginbutton-main").style.color = "black";
+            });
+            document.getElementById("loginbutton-main").addEventListener("mouseout", function() {
+                document.getElementById("loginbutton-main").style.backgroundColor = "black";
+                document.getElementById("loginbutton-main").style.color = "white";
+            });
+            document.getElementById("loginbutton-nav").addEventListener("mouseover", function() {
+                document.getElementById("loginbutton-nav").style.backgroundColor = "white";
+                document.getElementById("loginbutton-nav").style.color = "black";
+            });
+            document.getElementById("loginbutton-nav").addEventListener("mouseout", function() {
+                document.getElementById("loginbutton-nav").style.backgroundColor = "black";
+                document.getElementById("loginbutton-nav").style.color = "white";
+            });
+            document.getElementById("registerbutton-main").addEventListener("mouseover", function() {
+                document.getElementById("registerbutton-main").style.backgroundColor = "white";
+                document.getElementById("registerbutton-main").style.color = "black";
+            });
+            document.getElementById("registerbutton-main").addEventListener("mouseout", function() {
+                document.getElementById("registerbutton-main").style.backgroundColor = "black";
+                document.getElementById("registerbutton-main").style.color = "white";
+            });
+            document.getElementById("registerbutton-nav").addEventListener("mouseover", function() {
+                document.getElementById("registerbutton-nav").style.backgroundColor = "white";
+                document.getElementById("registerbutton-nav").style.color = "black";
+            });
+            document.getElementById("registerbutton-nav").addEventListener("mouseout", function() {
+                document.getElementById("registerbutton-nav").style.backgroundColor = "black";
+                document.getElementById("registerbutton-nav").style.color = "white";
+            });
+        </script>
+    </body>
+</html>

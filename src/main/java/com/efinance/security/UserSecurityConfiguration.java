@@ -1,6 +1,10 @@
 package com.efinance.security;
 
 import com.efinance.service.CustomUserDetailsService;
+import java.io.IOException;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -11,8 +15,10 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 
 @Configuration
@@ -61,6 +67,8 @@ public class UserSecurityConfiguration extends WebSecurityConfigurerAdapter
             .and().formLogin().loginPage("/login").loginProcessingUrl("/validate").usernameParameter("email").passwordParameter("userpass").defaultSuccessUrl("/home")
             .and().logout().logoutSuccessUrl("/").permitAll();
         http.csrf().disable();
+        http.logout().logoutUrl("/logout");
+        http.logout().logoutSuccessUrl("/");
     }
     
     @Autowired
