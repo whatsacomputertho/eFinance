@@ -62,7 +62,7 @@ public class UserSecurityConfiguration extends WebSecurityConfigurerAdapter
             .antMatchers("/resources/**").permitAll()
             .antMatchers("/resources/static/style.css").permitAll()
             .and().authorizeRequests()
-            .antMatchers("/review-loan").hasAuthority("LOANOFFICER")
+            .antMatchers("/review-loan/*").hasAuthority("LOANOFFICER")
             .anyRequest().authenticated()
             .and().formLogin().loginPage("/login").loginProcessingUrl("/validate").usernameParameter("email").passwordParameter("userpass").defaultSuccessUrl("/home")
             .and().logout().logoutSuccessUrl("/").permitAll();

@@ -45,6 +45,9 @@ public class Loan
     @Temporal(TemporalType.DATE)
     private Date loanApprovalDate;
     
+    @Column(name="isapproved")
+    private boolean isApproved;
+    
     /**
      * The amount data field signifies how much money the loan is worth in US Dollars (USD)
      */
@@ -86,6 +89,16 @@ public class Loan
         this.loanApprovalDate = loanApprovalDate;
         this.amountUSD = amountUSD;
         this.interestRate = interestRate;
+    }
+
+    public int getLoanId()
+    {
+        return loanId;
+    }
+
+    public void setLoanId(int loanId)
+    {
+        this.loanId = loanId;
     }
     
     /**
@@ -176,5 +189,15 @@ public class Loan
     public void setInterestRate(double interestRate)
     {
         this.interestRate = interestRate;
+    }
+
+    public boolean isIsApproved()
+    {
+        return isApproved;
+    }
+
+    public void setIsApproved(boolean isApproved)
+    {
+        this.isApproved = isApproved;
     }
 }
