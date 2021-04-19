@@ -27,6 +27,11 @@ public class LoanService
         return this.loanRepository.findById(id).get();
     }
     
+    public List<Loan> getByUserId(Integer userId)
+    {
+        return this.loanRepository.findByUserId(userId);
+    }
+    
     public void delete(Integer id)
     {
         this.loanRepository.deleteById(id);

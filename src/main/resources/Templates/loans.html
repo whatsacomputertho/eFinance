@@ -4,10 +4,9 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
-<html xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.springframework.org/extras/spring-security">
+<html xmlns:th="http://www.thymeleaf.org">
     <head>
-        <title>Home</title>
+        <title>Loans</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
@@ -22,7 +21,30 @@ and open the template in the editor.
         <div style="background-image: url('https://live.staticflickr.com/5293/5537894072_c4e46bfce1_b.jpg'); background-size: cover; background-repeat: no-repeat; width: 100vw; height: 92vh;">
             <div style="height: 10vh"></div>
             <div style="margin: auto; width: 70vw; height: 70vh; padding-top: 5vh; padding-left: 4vw; padding-right: 4vw; background-color: rgba(0, 0, 0, 0.9);">
-                <h1 style="color: white; margin: 0px; padding: 0px;" sec:authentication="name">Welcome, [[${#request.remoteUser}]]</h1>
+                <h1 style="color: white; margin: 0px; padding: 0px;" sec:authentication="name">Loans</h1>
+                <table>
+                    <thead>
+                        <th style="color: white;">User</th>
+                        <th style="color: white;">Loan Type</th>
+                        <th style="color: white;">Amount (USD)</th>
+                        <th style="color: white;">Interest Rate</th>
+                        <th style="color: white;">Status</th>
+                        <th style="color: white;">Approval Date</th>
+                    </thead>
+                    <tbody>
+                        <tr th:each="loan : ${loanList}">
+                            <td style="color: white;" th:text="${loan.borrower.email}">User</td>
+                            <td style="color: white;" th:text="${loan.loanType}">Loan Type</td>
+                            <td style="color: white;" th:text="${loan.amountUSD}">Amount (USD)</td>
+                            <th style="color: white;" th:text="${loan.interestRate}">Interest Rate</th>
+                            <td style="color: white;" th:text="${loan.isApproved}">Status</td>
+                            <td style="color: white;" th:text="${loan.loanApprovalDate}">Approval Date</td>
+                            <td style="color: white;">
+                                <a th:href="@{'/review-loan/' + ${loan.loanId}}">Review Loan</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
         <script>
