@@ -16,7 +16,10 @@ and open the template in the editor.
         <div style="background-image: url('https://live.staticflickr.com/5293/5537894072_c4e46bfce1_b.jpg'); background-size: cover; background-repeat: no-repeat; width: 100vw; height: 100vh;">
             <div style="height: 10vh"></div>
             <div style="margin: auto; width: 70vw; height: 80vh; padding-top: 5vh; padding-left: 4vw; padding-right: 4vw; background-color: rgba(0, 0, 0, 0.9);">
-                <h1 style="color: white;">Register</h1>
+                <div style="display: grid; grid-template-columns: 10% 90%; grid-template-rows: 15%;">
+                    <button id="backbutton" onclick="window.location.href='/'" style="color: white; padding: 16px; background-color: black; border-color: white; border-radius: 8px; transition-duration: 0.4s; margin-right: 5%;">Back</button>
+                    <h1 style="color: white; margin-top: 0px; margin-bottom: 0px;">Register</h1>
+                </div>
                 <form action="#" th:action="@{/verify}" th:object="${user}" method="post">
                     <div style="margin-top: 3vh;">
                         <h5 style="color: white;">First Name:</h5>
@@ -32,7 +35,7 @@ and open the template in the editor.
                     </div>
                     <div style="margin-top: 3vh;">
                         <h5 style="color: white;">Password:</h5>
-                        <div><input id="passfield" type="hidden" th:field="*{userpass}"/><simple-fields-field id="pass" type="text" style="--simple-fields-color: white;"></simple-fields-field></div>
+                        <div><input id="passfield" type="hidden" th:field="*{userpass}"/><simple-fields-field id="pass" type="password" style="--simple-fields-color: white;"></simple-fields-field></div>
                     </div>
                     <div style="margin-top: 3vh">
                         <button id="submitbutton" type="submit" style="color: white; padding: 16px; background-color: black; border-color: white; border-radius: 8px; transition-duration: 0.4s">Register</button></td>
@@ -64,6 +67,14 @@ and open the template in the editor.
             document.getElementById("submitbutton").addEventListener("mouseout", function() {
                 document.getElementById("submitbutton").style.backgroundColor = "black";
                 document.getElementById("submitbutton").style.color = "white";
+            });
+            document.getElementById("backbutton").addEventListener("mouseover", function() {
+                document.getElementById("backbutton").style.backgroundColor = "white";
+                document.getElementById("backbutton").style.color = "black";
+            });
+            document.getElementById("backbutton").addEventListener("mouseout", function() {
+                document.getElementById("backbutton").style.backgroundColor = "black";
+                document.getElementById("backbutton").style.color = "white";
             });
         </script>
     </body>
