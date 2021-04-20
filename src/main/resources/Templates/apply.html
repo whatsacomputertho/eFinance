@@ -17,13 +17,16 @@ and open the template in the editor.
             <img src="https://photo.isu.pub/atz.sa/photo_large.jpg" height="100%"/>
             <button id="applybutton-nav" onclick="window.location.href='/apply'" style="color: white; padding: 16px; background-color: black; border-color: white; border-radius: 8px; transition-duration: 0.4s;">Apply</button>
             <button id="loansbutton-nav" onclick="window.location.href='/loans'" style="color: white; padding: 16px; background-color: black; border-color: white; border-radius: 8px; transition-duration: 0.4s; margin-left: 5%;">Loans</button>
-            <button id="accountsbutton-nav" onclick="window.location.href='/register'" style="color: white; padding: 16px; background-color: black; border-color: white; border-radius: 8px; transition-duration: 0.4s; margin-left: 5%;">Accounts</button>
+            <button id="accountsbutton-nav" onclick="window.location.href='/accounts'" style="color: white; padding: 16px; background-color: black; border-color: white; border-radius: 8px; transition-duration: 0.4s; margin-left: 5%;">Accounts</button>
             <button id="settingsbutton-nav" onclick="window.location.href='/settings'" style="color: white; padding: 16px; background-color: black; border-color: white; border-radius: 8px; transition-duration: 0.4s; margin-left: 5%;">Settings</button>
         </div>
         <div style="background-image: url('https://live.staticflickr.com/5293/5537894072_c4e46bfce1_b.jpg'); background-size: cover; background-repeat: no-repeat; width: 100vw; height: 100vh;">
             <div style="height: 10vh"></div>
             <div style="margin: auto; width: 70vw; height: 70vh; padding-top: 5vh; padding-left: 4vw; padding-right: 4vw; background-color: rgba(0, 0, 0, 0.9);">
-                <h1 style="color: white;">Apply for loan</h1>
+                <div style="display: grid; grid-template-columns: 10% 90%; grid-template-rows: 15%;">
+                    <button id="homebutton" onclick="window.location.href='/home'" style="color: white; padding: 16px; background-color: black; border-color: white; border-radius: 8px; transition-duration: 0.4s; margin-right: 5%;">Home</button>
+                    <h1 style="color: white; margin-top: 0px; margin-bottom: 0px;">Apply for loan</h1>
+                </div>
                 <form action="#" th:action="@{/submit-application}" th:object="${loan}" method="post">
                     <div style="margin-top: 3vh;">
                         <h5 style="color: white;">Loan Type:</h5>
@@ -120,6 +123,14 @@ and open the template in the editor.
             document.getElementById("applybutton").addEventListener("mouseout", function() {
                 document.getElementById("applybutton").style.backgroundColor = "black";
                 document.getElementById("applybutton").style.color = "white";
+            });
+            document.getElementById("homebutton").addEventListener("mouseover", function() {
+                document.getElementById("homebutton").style.backgroundColor = "white";
+                document.getElementById("homebutton").style.color = "black";
+            });
+            document.getElementById("homebutton").addEventListener("mouseout", function() {
+                document.getElementById("homebutton").style.backgroundColor = "black";
+                document.getElementById("homebutton").style.color = "white";
             });
         </script>
     </body>
