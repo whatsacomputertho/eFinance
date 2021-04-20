@@ -63,6 +63,24 @@ public class LoanController
         return mav;
     }
     
+    @RequestMapping("apply-confirmation")
+    public String toApplyConfirmation(Model model)
+    {
+        return "apply-confirmation";
+    }
+    
+    @RequestMapping("loan-approval-confirmation")
+    public String toLoanApprovalConfirmation(Model model)
+    {
+        return "loan-approval-confirmation";
+    }
+    
+    @RequestMapping("loan-denial-confirmation")
+    public String toLoanDenialConfirmation(Model model)
+    {
+        return "loan-denial-confirmation";
+    }
+    
     @RequestMapping("/submit-application")
     public String submitApplication(@ModelAttribute("loan") Loan loan, Model model)
     {
@@ -74,7 +92,7 @@ public class LoanController
             loan.setLoanApprovalDate(null);
             loan.setIsApproved(false);
             loanService.save(loan);
-            return "redirect:/home";
+            return "redirect:/apply-confirmation";
         }
         else
         {
@@ -90,7 +108,8 @@ public class LoanController
         loan.setIsApproved(true);
         loan.setLoanApprovalDate(new Date());
         loanService.save(loan);
-        return "redirect:/loans";
+        //TODO: Add auto-created payment account
+        return "redirect:/loan-approval-confirmation";
     }
     
     @RequestMapping("/review-loan/{id}/deny")
@@ -100,6 +119,6 @@ public class LoanController
         loan.setIsApproved(false);
         loan.setLoanApprovalDate(new Date());
         loanService.save(loan);
-        return "redirect:/loans";
+        return "redirect:/loan-denial-confirmation";
     }
 }
