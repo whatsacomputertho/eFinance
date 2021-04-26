@@ -2,35 +2,44 @@ package com.efinance.model;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Set;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
-/**
- *
- * @author Joseph Haftl
- */
+@Entity
+@Table(name="paymentaccount")
 public class PaymentAccount 
 {
+    @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @Column(name="accountid", nullable=false)
+    private Integer accountId;
+    
     /**
      * Payment accounts consist of two users, the borrower and the account manager
- The borrower is already associated with the loan itself, so the only User that must be stored directly within the PaymentAccount class is the account manager
+     * The borrower is already associated with the loan itself, so the only User that must be stored directly within the PaymentAccount class is the account manager
      */
+    @ManyToOne
+    @JoinColumn(name="userid", nullable=false)
     private User accountManager;
     
     /**
      * Payment accounts also consist of a loan which is used to calculate its current value based on its origination date and its initial value
      * These form the basis for the account balance, and then these are used to calculate interest over time
      */
+    @ManyToOne
+    @JoinColumn(name="loanid", nullable=false)
     private Loan loan;
-    /**
-     * The date that the loan was payed on. This will be an array that shows all the dates that the User made payments on
- This will be used to allow the User and manger to track when payments were made
-     */
-    private ArrayList<Date> paymentDates;
     
-    /**
-     * The amount that the User pays each time they make a payment.
-     * This will allow the User and manger to track the amount they payed during each payment
-     */
-    private ArrayList<Double> paymentAmounts;
+    @OneToMany(mappedBy="account")
+    private Set<Payment> payments;
   
     /**
      * Returns the variable loan of type loan. This variable made in the loan Loan class includes CAR, STUDENT, MORTGAGE, PROJECT, RENOVATION
@@ -68,40 +77,24 @@ public class PaymentAccount
         this.accountManager = accountManager;
     }
 
-    /**
-     * returns the array of payment dates, showing each of the days the User made a payment
-     * @return paymentDates
-     */
-    public ArrayList<Date> getPaymentDates()
+    public Integer getAccountId()
     {
-        return paymentDates;
+        return accountId;
     }
 
-    /**
-     * sets the array of payment dates
-     * @param paymentDates an array of dates that contains each day the User has made a payment
-     */
-    public void setPaymentDates(ArrayList<Date> paymentDates)
+    public void setAccountId(Integer accountId)
     {
-        this.paymentDates = paymentDates;
+        this.accountId = accountId;
     }
 
-    /**
-     * returns the amount of money that the User paid
-     * @return paymentAmounts
-     */
-    public ArrayList<Double> getPaymentAmounts()
+    public Set<Payment> getPayments()
     {
-        return paymentAmounts;
+        return payments;
     }
 
-    /**
-     * sets the amount of money that the User paid.
-     * @param paymentAmounts an array of the payment amounts containing the amount that they pay each time
-     */
-    public void setPaymentAmounts(ArrayList<Double> paymentAmounts)
+    public void setPayments(Set<Payment> payments)
     {
-        this.paymentAmounts = paymentAmounts;
+        this.payments = payments;
     }
 
     /**

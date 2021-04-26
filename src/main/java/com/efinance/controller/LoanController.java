@@ -2,8 +2,10 @@ package com.efinance.controller;
 
 import com.efinance.details.CustomUserDetails;
 import com.efinance.model.Loan;
+import com.efinance.model.PaymentAccount;
 import com.efinance.model.User;
 import com.efinance.service.LoanService;
+import com.efinance.service.PaymentAccountService;
 import com.efinance.service.UserService;
 import java.util.Date;
 import java.util.List;
@@ -27,6 +29,9 @@ public class LoanController
     
     @Autowired
     UserService userService;
+    
+    @Autowired
+    PaymentAccountService paymentAccountService;
     
     @RequestMapping("/apply")
     public String toApply(Model model)
@@ -108,7 +113,10 @@ public class LoanController
         loan.setIsApproved(true);
         loan.setLoanApprovalDate(new Date());
         loanService.save(loan);
-        //TODO: Add auto-created payment account
+        PaymentAccount account = new PaymentAccount();
+        account.setAccountManager(this.userService.get(48));
+        account.setLoan(loan);
+        paymentAccountService.save(account);
         return "redirect:/loan-approval-confirmation";
     }
     
