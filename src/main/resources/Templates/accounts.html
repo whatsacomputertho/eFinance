@@ -6,11 +6,13 @@ and open the template in the editor.
 -->
 <html xmlns:th="http://www.thymeleaf.org">
     <head>
-        <title>Loans</title>
+        <title>Accounts</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body style="margin: auto;">
+        <script>window.__appCDN="https://cdn.webcomponents.psu.edu/cdn/";</script>
+        <script src="https://cdn.webcomponents.psu.edu/cdn/build.js"></script>
         <div style="height: 8vh; display: grid; grid-template-columns: 20% 20% 20% 20% 20%; background-color: black;">
             <img src="https://photo.isu.pub/atz.sa/photo_large.jpg" height="100%"/>
             <button id="applybutton-nav" onclick="window.location.href='/apply'" style="color: white; padding: 16px; background-color: black; border-color: white; border-radius: 8px; transition-duration: 0.4s;">Apply</button>
@@ -23,7 +25,7 @@ and open the template in the editor.
             <div style="margin: auto; width: 70vw; height: 70vh; padding-top: 5vh; padding-left: 4vw; padding-right: 4vw; background-color: rgba(0, 0, 0, 0.9);">
                 <div style="display: grid; grid-template-columns: 10% 90%; grid-template-rows: 15%;">
                     <button id="homebutton" onclick="window.location.href='/home'" style="color: white; padding: 16px; background-color: black; border-color: white; border-radius: 8px; transition-duration: 0.4s; margin-right: 5%;">Home</button>
-                    <h1 style="color: white; margin-top: 0px; margin-bottom: 0px;">Loans</h1>
+                    <h1 style="color: white; margin-top: 0px; margin-bottom: 0px;">Accounts</h1>
                 </div>
                 <table>
                     <thead>
@@ -31,19 +33,17 @@ and open the template in the editor.
                         <th style="color: white;">Loan Type</th>
                         <th style="color: white;">Amount (USD)</th>
                         <th style="color: white;">Interest Rate</th>
-                        <th style="color: white;">Status</th>
                         <th style="color: white;">Approval Date</th>
                     </thead>
                     <tbody>
-                        <tr th:each="loan : ${loanList}">
-                            <td style="color: white;" th:text="${loan.borrower.email}">User</td>
-                            <td style="color: white;" th:text="${loan.loanType}">Loan Type</td>
-                            <td style="color: white;" th:text="${loan.amountUSD}">Amount (USD)</td>
-                            <td style="color: white;" th:text="${loan.interestRate}">Interest Rate</td>
-                            <td style="color: white;" th:text="${loan.isApproved}">Status</td>
-                            <td style="color: white;" th:text="${loan.loanApprovalDate}">Approval Date</td>
+                        <tr th:each="account : ${accountList}">
+                            <td style="color: white;" th:text="${account.loan.borrower.email}">User</td>
+                            <td style="color: white;" th:text="${account.loan.loanType}">Loan Type</td>
+                            <td style="color: white;" th:text="${account.loan.amountUSD}">Amount (USD)</td>
+                            <td style="color: white;" th:text="${account.loan.interestRate}">Interest Rate</td>
+                            <td style="color: white;" th:text="${account.loan.loanApprovalDate}">Approval Date</td>
                             <td style="color: white;">
-                                <a th:href="@{'/review-loan/' + ${loan.loanId}}">Review Loan</a>
+                                <a th:href="@{'/account/' + ${account.accountId}}">View Account</a>
                             </td>
                         </tr>
                     </tbody>

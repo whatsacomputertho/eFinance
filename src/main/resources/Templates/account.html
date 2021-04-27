@@ -4,13 +4,15 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
-<html xmlns:th="http://www.thymeleaf.org">
+<html>
     <head>
-        <title>Loans</title>
+        <title>Account</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body style="margin: auto;">
+        <script>window.__appCDN="https://cdn.webcomponents.psu.edu/cdn/";</script>
+        <script src="https://cdn.webcomponents.psu.edu/cdn/build.js"></script>
         <div style="height: 8vh; display: grid; grid-template-columns: 20% 20% 20% 20% 20%; background-color: black;">
             <img src="https://photo.isu.pub/atz.sa/photo_large.jpg" height="100%"/>
             <button id="applybutton-nav" onclick="window.location.href='/apply'" style="color: white; padding: 16px; background-color: black; border-color: white; border-radius: 8px; transition-duration: 0.4s;">Apply</button>
@@ -20,34 +22,21 @@ and open the template in the editor.
         </div>
         <div style="background-image: url('https://live.staticflickr.com/5293/5537894072_c4e46bfce1_b.jpg'); background-size: cover; background-repeat: no-repeat; width: 100vw; height: 92vh;">
             <div style="height: 10vh"></div>
-            <div style="margin: auto; width: 70vw; height: 70vh; padding-top: 5vh; padding-left: 4vw; padding-right: 4vw; background-color: rgba(0, 0, 0, 0.9);">
-                <div style="display: grid; grid-template-columns: 10% 90%; grid-template-rows: 15%;">
-                    <button id="homebutton" onclick="window.location.href='/home'" style="color: white; padding: 16px; background-color: black; border-color: white; border-radius: 8px; transition-duration: 0.4s; margin-right: 5%;">Home</button>
-                    <h1 style="color: white; margin-top: 0px; margin-bottom: 0px;">Loans</h1>
+            <div th:object="${account}" style="margin: auto; width: 70vw; height: 70vh; padding-top: 5vh; padding-left: 4vw; padding-right: 4vw; background-color: rgba(0, 0, 0, 0.9);">
+                <div style="display: grid; grid-template-columns: 10% 90%; grid-template-rows: 12%;">
+                    <button id="backbutton" onclick="window.location.href='/accounts'" style="color: white; padding: 16px; background-color: black; border-color: white; border-radius: 8px; transition-duration: 0.4s; margin-right: 5%;">Back</button>
+                    <h1 style="color: white; margin-top: 0px; margin-bottom: 0px;">Account Information</h1>
                 </div>
-                <table>
-                    <thead>
-                        <th style="color: white;">User</th>
-                        <th style="color: white;">Loan Type</th>
-                        <th style="color: white;">Amount (USD)</th>
-                        <th style="color: white;">Interest Rate</th>
-                        <th style="color: white;">Status</th>
-                        <th style="color: white;">Approval Date</th>
-                    </thead>
-                    <tbody>
-                        <tr th:each="loan : ${loanList}">
-                            <td style="color: white;" th:text="${loan.borrower.email}">User</td>
-                            <td style="color: white;" th:text="${loan.loanType}">Loan Type</td>
-                            <td style="color: white;" th:text="${loan.amountUSD}">Amount (USD)</td>
-                            <td style="color: white;" th:text="${loan.interestRate}">Interest Rate</td>
-                            <td style="color: white;" th:text="${loan.isApproved}">Status</td>
-                            <td style="color: white;" th:text="${loan.loanApprovalDate}">Approval Date</td>
-                            <td style="color: white;">
-                                <a th:href="@{'/review-loan/' + ${loan.loanId}}">Review Loan</a>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                <p style="color: white;" th:text="${account.loan.borrower.email}">User</p>
+                <p style="color: white;" th:text="${account.loan.loanType}">Loan Type</p>
+                <p style="color: white;" th:text="${account.loan.amountUSD}">Amount (USD)</p>
+                <p style="color: white;" th:text="${account.loan.interestRate}">Interest Rate</p>
+                <p style="color: white;" th:text="${account.loan.loanApprovalDate}">Approval Date</p>
+                <div style="margin-top: 3vh; display: grid; grid-template-columns: 30% 2% 30%">
+                    <form th:action="@{'/payment/' + ${account.accountId}}">
+                        <button id="paymentbutton" type="submit" style="color: white; padding: 16px; background-color: black; border-color: white; border-radius: 8px; transition-duration: 0.4s;">Make Payment</button>
+                    </form>
+                </div>
             </div>
         </div>
         <script>
@@ -83,13 +72,21 @@ and open the template in the editor.
                 document.getElementById("settingsbutton-nav").style.backgroundColor = "black";
                 document.getElementById("settingsbutton-nav").style.color = "white";
             });
-            document.getElementById("homebutton").addEventListener("mouseover", function() {
-                document.getElementById("homebutton").style.backgroundColor = "white";
-                document.getElementById("homebutton").style.color = "black";
+            document.getElementById("backbutton").addEventListener("mouseover", function() {
+                document.getElementById("backbutton").style.backgroundColor = "white";
+                document.getElementById("backbutton").style.color = "black";
             });
-            document.getElementById("homebutton").addEventListener("mouseout", function() {
-                document.getElementById("homebutton").style.backgroundColor = "black";
-                document.getElementById("homebutton").style.color = "white";
+            document.getElementById("backbutton").addEventListener("mouseout", function() {
+                document.getElementById("backbutton").style.backgroundColor = "black";
+                document.getElementById("backbutton").style.color = "white";
+            });
+            document.getElementById("paymentbutton").addEventListener("mouseover", function() {
+                document.getElementById("paymentbutton").style.backgroundColor = "white";
+                document.getElementById("paymentbutton").style.color = "black";
+            });
+            document.getElementById("paymentbutton").addEventListener("mouseout", function() {
+                document.getElementById("paymentbutton").style.backgroundColor = "black";
+                document.getElementById("paymentbutton").style.color = "white";
             });
         </script>
     </body>
