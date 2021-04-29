@@ -1,7 +1,10 @@
 package com.efinance.model;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -96,23 +99,21 @@ public class PaymentAccount
     {
         this.payments = payments;
     }
-
-    /**
-     * Allows the User to pay a certain amount of money, in order to pay off their loan
-     * @param paymentAmount the amount that the User decides to pay off their loan by
-     */
-    public void makePayment(double paymentAmount)
+    
+    public double calculateBalance()
     {
-
-    }
-
-    /**
-     * Allows the User and manager to see all past payments, This displays all the dates these payments were made on and the amount that was paid
-     * @param paymentDates an array of dates that contains each day the User has made a payment
-     * @param paymentAmounts an array of the payment amounts containing the amount that they pay each time
-     */
-    public void trackPayment(ArrayList paymentDates, ArrayList paymentAmounts)
-    {
-
+        double balance = this.loan.getAmountUSD();
+        for(Payment payment : this.payments)
+        {
+            balance -= payment.getPaymentAmountUSD();
+        }
+        if(balance <= 0)
+        {
+            return 0;
+        }
+        else
+        {
+            return balance;
+        }
     }
 }

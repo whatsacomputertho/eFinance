@@ -33,6 +33,7 @@ and open the template in the editor.
                         <th style="color: white;">Loan Type</th>
                         <th style="color: white;">Amount (USD)</th>
                         <th style="color: white;">Interest Rate</th>
+                        <th style="color: white;">Balance</th>
                         <th style="color: white;">Approval Date</th>
                     </thead>
                     <tbody>
@@ -41,6 +42,7 @@ and open the template in the editor.
                             <td style="color: white;" th:text="${account.loan.loanType}">Loan Type</td>
                             <td style="color: white;" th:text="${account.loan.amountUSD}">Amount (USD)</td>
                             <td style="color: white;" th:text="${account.loan.interestRate}">Interest Rate</td>
+                            <td style="color: white;" th:text="${account.calculateBalance()}">Balance</td>
                             <td style="color: white;" th:text="${account.loan.loanApprovalDate}">Approval Date</td>
                             <td style="color: white;">
                                 <a th:href="@{'/account/' + ${account.accountId}}">View Account</a>
