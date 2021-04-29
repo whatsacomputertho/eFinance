@@ -3,6 +3,7 @@ package com.efinance.model;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -22,7 +23,7 @@ public class Payment
     private Integer paymentId;
     
     @ManyToOne
-    @JoinColumn(name="accountid", nullable=false)
+    @JoinColumn(name="accountid")
     private PaymentAccount account;
     
     @Column(name="paymentdate")

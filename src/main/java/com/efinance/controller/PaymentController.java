@@ -1,16 +1,19 @@
 package com.efinance.controller;
 
+import com.efinance.model.Payment;
 import com.efinance.model.PaymentAccount;
 import com.efinance.model.User;
 import com.efinance.service.PaymentAccountService;
 import com.efinance.service.PaymentService;
 import com.efinance.service.UserService;
+import java.util.Date;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -60,6 +63,32 @@ public class PaymentController
         ModelAndView mav = new ModelAndView("payment");
         PaymentAccount account = this.paymentAccountService.get(id);
         mav.addObject("account", account);
+        Payment payment = new Payment();
+        mav.addObject("payment", payment);
         return mav;
+    }
+    
+    @RequestMapping("/payment-confirmation")
+    public String toPaymentConfirmation(Model model)
+    {
+        return "payment-confirmation";
+    }
+    
+    @RequestMapping("/submit-payment/{id}")
+    public String submitPayment(@PathVariable(name="id") Integer id, @ModelAttribute("payment") Payment payment, Model model)
+    {
+        if(payment.getPaymentAmountUSD() > 0)
+        {
+            PaymentAccount account = this.paymentAccountService.get(id);
+            payment.setPaymentDate(new Date());
+            payment.setAccount(account);
+            this.paymentService.save(payment);
+            return "redirect:/payment-confirmation";
+        }
+        else
+        {
+            model.addAttribute("feedback", "Please add a payment amount greater than $0.00");
+            return "payment";
+        }
     }
 }
