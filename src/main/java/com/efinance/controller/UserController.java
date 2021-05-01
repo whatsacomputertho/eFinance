@@ -122,24 +122,51 @@ public class UserController
     }
 
     
-     @RequestMapping("/settings")
+    @RequestMapping("/settings")
     public String toSettings(Model model)
     {
-        User user = new User();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = userService.getByEmail(auth.getName()).get(0);
         model.addAttribute("user", user);
         return "settings";
     }
     
     
-   @RequestMapping(value="/update", method=RequestMethod.POST)
-    @ResponseStatus(value=HttpStatus.OK)
+    @RequestMapping(value="/update", method=RequestMethod.POST)
     public String updateUser(@ModelAttribute("user") User user, Model model)
-   {  
-        user.setUserType(User.UserType.CUSTOMER);
+    {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User existingUser = userService.getByEmail(auth.getName()).get(0);
+        user.setUserID(existingUser.getUserID());
+        if(user.getFname().equals(""))
+        {
+            user.setFname(existingUser.getFname());
+        }
+        if(user.getLname().equals(""))
+        {
+            user.setLname(existingUser.getLname());
+        }
+        if(user.getEmail().equals(""))
+        {
+            user.setEmail(existingUser.getEmail());
+        }
+        if(user.getUserpass().equals(""))
+        {
+            user.setUserpass(existingUser.getUserpass());
+        }
+        else
+        {
+            user.setUserpass(new BCryptPasswordEncoder().encode(user.getUserpass()));
+        }
+        user.setUserType(existingUser.getUsertype());
         this.userService.save(user);
-        
-        return "home";
-    
+        System.out.println(user.getFname());
+        System.out.println(user.getLname());
+        System.out.println(user.getEmail());
+        System.out.println(user.getUserpass());
+        System.out.println(user.getUsertype());
+        System.out.println(user.getUserID());
+        return "redirect:/home";
     }
 
     
