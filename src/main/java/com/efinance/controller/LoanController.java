@@ -128,5 +128,5 @@ public class LoanController
         loan.setLoanApprovalDate(new Date());
         loanService.save(loan);
         return "redirect:/loan-denial-confirmation";
-    }
+    }  
 }

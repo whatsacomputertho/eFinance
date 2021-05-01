@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.ui.ModelMap;
 
 @Controller
 public class UserController
@@ -119,10 +120,34 @@ public class UserController
         }
         return "home";
     }
+
+    
+     @RequestMapping("/settings")
+    public String toSettings(Model model)
+    {
+        User user = new User();
+        model.addAttribute("user", user);
+        return "settings";
+    }
+    
+    
+   @RequestMapping(value="/update", method=RequestMethod.POST)
+    @ResponseStatus(value=HttpStatus.OK)
+    public String updateUser(@ModelAttribute("user") User user, Model model)
+   {  
+        user.setUserType(User.UserType.CUSTOMER);
+        this.userService.save(user);
+        
+        return "home";
+    
+    }
+
+    
+    
     
     @RequestMapping("/logout")
     public String logout()
     {
-        return "/";
+        return "/login";
     }
 }
