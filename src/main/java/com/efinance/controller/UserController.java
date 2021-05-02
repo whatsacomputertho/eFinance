@@ -6,10 +6,13 @@ import com.efinance.model.User;
 import com.efinance.service.LoanService;
 import com.efinance.service.PaymentAccountService;
 import com.efinance.service.UserService;
+import java.util.Collection;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -125,8 +128,7 @@ public class UserController
     @RequestMapping("/settings")
     public String toSettings(Model model)
     {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        User user = userService.getByEmail(auth.getName()).get(0);
+        User user = new User();
         model.addAttribute("user", user);
         return "settings";
     }
@@ -135,6 +137,7 @@ public class UserController
     @RequestMapping(value="/update", method=RequestMethod.POST)
     public String updateUser(@ModelAttribute("user") User user, Model model)
     {
+        Collection<SimpleGrantedAuthority> nowAuthorities = (Collection<SimpleGrantedAuthority>)SecurityContextHolder.getContext().getAuthentication().getAuthorities();
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User existingUser = userService.getByEmail(auth.getName()).get(0);
         user.setUserID(existingUser.getUserID());
@@ -158,19 +161,13 @@ public class UserController
         {
             user.setUserpass(new BCryptPasswordEncoder().encode(user.getUserpass()));
         }
+        user.setEnabled(true);
         user.setUserType(existingUser.getUsertype());
         this.userService.save(user);
-        System.out.println(user.getFname());
-        System.out.println(user.getLname());
-        System.out.println(user.getEmail());
-        System.out.println(user.getUserpass());
-        System.out.println(user.getUsertype());
-        System.out.println(user.getUserID());
+        UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(user.getEmail(), user.getUserpass(), nowAuthorities);
+        SecurityContextHolder.getContext().setAuthentication(authentication);
         return "redirect:/home";
     }
-
-    
-    
     
     @RequestMapping("/logout")
     public String logout()
