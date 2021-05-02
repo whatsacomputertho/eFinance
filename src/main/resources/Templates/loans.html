@@ -11,7 +11,7 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body style="margin: auto;">
-        <div style="height: 8vh; display: grid; grid-template-columns: 20% 20% 20% 20% 20%; background-color: black;">
+        <div style="height: 8vh; display: grid; grid-template-columns: 20% 20% 20% 20% 20%; grid-template-rows: 100%; background-color: black;">
             <img src="https://photo.isu.pub/atz.sa/photo_large.jpg" height="100%"/>
             <button id="applybutton-nav" onclick="window.location.href='/apply'" style="color: white; padding: 16px; background-color: black; border-color: white; border-radius: 8px; transition-duration: 0.4s;">Apply</button>
             <button id="loansbutton-nav" onclick="window.location.href='/loans'" style="color: white; padding: 16px; background-color: black; border-color: white; border-radius: 8px; transition-duration: 0.4s; margin-left: 5%;">Loans</button>
@@ -25,24 +25,25 @@ and open the template in the editor.
                     <button id="homebutton" onclick="window.location.href='/home'" style="color: white; padding: 16px; background-color: black; border-color: white; border-radius: 8px; transition-duration: 0.4s; margin-right: 5%;">Home</button>
                     <h1 style="color: white; margin-top: 0px; margin-bottom: 0px;">Loans</h1>
                 </div>
-                <table>
+                <br>
+                <table style="border: 1px solid white;">
                     <thead>
-                        <th style="color: white;">User</th>
-                        <th style="color: white;">Loan Type</th>
-                        <th style="color: white;">Amount (USD)</th>
-                        <th style="color: white;">Interest Rate</th>
-                        <th style="color: white;">Status</th>
-                        <th style="color: white;">Approval Date</th>
+                        <th style="color: white; border: 1px solid white; font: bold;">User</th>
+                        <th style="color: white; border: 1px solid white; font: bold;">Loan Type</th>
+                        <th style="color: white; border: 1px solid white; font: bold;">Amount (USD)</th>
+                        <th style="color: white; border: 1px solid white; font: bold;">Interest Rate</th>
+                        <th style="color: white; border: 1px solid white; font: bold;">Status</th>
+                        <th style="color: white; border: 1px solid white; font: bold;">Approval Date</th>
                     </thead>
                     <tbody>
                         <tr th:each="loan : ${loanList}">
-                            <td style="color: white;" th:text="${loan.borrower.email}">User</td>
-                            <td style="color: white;" th:text="${loan.loanType}">Loan Type</td>
-                            <td style="color: white;" th:text="${loan.amountUSD}">Amount (USD)</td>
-                            <td style="color: white;" th:text="${loan.interestRate}">Interest Rate</td>
-                            <td style="color: white;" th:text="${loan.isApproved}">Status</td>
-                            <td style="color: white;" th:text="${loan.loanApprovalDate}">Approval Date</td>
-                            <td style="color: white;">
+                            <td style="color: white; border: 1px solid white;" th:text="${loan.borrower.email}">User</td>
+                            <td style="color: white; border: 1px solid white;" th:text="${loan.loanType}">Loan Type</td>
+                            <td style="color: white; border: 1px solid white;" th:text="${loan.amountUSD}">Amount (USD)</td>
+                            <td style="color: white; border: 1px solid white;" th:text="${loan.interestRate}">Interest Rate</td>
+                            <td style="color: white; border: 1px solid white;" th:text="${loan.isApproved}">Status</td>
+                            <td style="color: white; border: 1px solid white;" th:text="${loan.loanApprovalDate}">Approval Date</td>
+                            <td style="color: white; border: 1px solid white;">
                                 <a th:href="@{'/review-loan/' + ${loan.loanId}}">Review Loan</a>
                             </td>
                         </tr>

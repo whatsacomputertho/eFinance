@@ -114,7 +114,7 @@ public class LoanController
         loan.setLoanApprovalDate(new Date());
         loanService.save(loan);
         PaymentAccount account = new PaymentAccount();
-        account.setAccountManager(this.userService.get(48));
+        account.setAccountManager(this.userService.get(58));
         account.setLoan(loan);
         paymentAccountService.save(account);
         return "redirect:/loan-approval-confirmation";
